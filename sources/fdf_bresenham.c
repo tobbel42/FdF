@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:41:35 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/08/27 16:00:13 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/01 14:05:07 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static int	fdf_sign(int nbr)
 	return (1);
 }
 
-static void	fast_x(int d[2], int s[2], t_point *p1, t_fdf *fdf)
+static void	fast_x(int d[2], int s[2], t_point_2d *p1, t_fdf *fdf)
 {
 	int		x;
 	int		y;
@@ -50,7 +50,7 @@ static void	fast_x(int d[2], int s[2], t_point *p1, t_fdf *fdf)
 	}
 }
 
-static void	fast_y(int d[2], int s[2], t_point *p1, t_fdf *fdf)
+static void	fast_y(int d[2], int s[2], t_point_2d *p1, t_fdf *fdf)
 {
 	int		x;
 	int		y;
@@ -74,7 +74,10 @@ static void	fast_y(int d[2], int s[2], t_point *p1, t_fdf *fdf)
 	}
 }
 
-void	fdf_bresenham(t_point *p1, t_point *p2, t_fdf *fdf)
+/*
+//draws a line on the screen between point 1 and point 2
+*/
+void	fdf_bresenham(t_point_2d *p1, t_point_2d *p2, t_fdf *fdf)
 {
 	int		d[2];
 	int		s[2];

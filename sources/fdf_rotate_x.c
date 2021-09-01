@@ -1,33 +1,45 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_keyboard.c                                     :+:      :+:    :+:   */
+/*   fdf_rotate_x.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/25 16:22:29 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/01 18:13:27 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/09/01 17:36:50 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/09/01 17:48:36 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	hook_keydown(int key, t_fdf *fdf)
+static void	x_rotate(t_point_3d *p, float rad)
 {
-	(void)fdf;
-	if (key == 53)
+	float	cosa;
+	float	sina;
+
+	cosa = cos(rad);
+	sina = sin(rad);
+	p->x = p->x;
+	p->y = p->y * cosa - p->z * sina;
+	p->z = p->y * sina + p->z * cosa;
+}
+
+void	fdf_rotate_x(t_fdf *fdf, int deg)
+{
+	float	rad;
+	int		x;
+	int		y;
+
+	rad = (float)deg * M_PI / 180;
+	y = 0;
+	while (fdf->matrix[y])
 	{
-		system("leaks fdf");
-		exit(EXIT_SUCCESS);
-	}
-	else if (key == 13)
-		fdf_rotate_x(fdf, -15);
-	else if (key == 0)
-		fdf_rotate_y(fdf, -15);
-	else if (key == 1)
-		fdf_rotate_x(fdf, 15);
-	else if (key == 2)
-		fdf_rotate_y(fdf, 15);
-	fdf_draw_screen(fdf);
-	return (0);
+		x = 0;
+		while (fdf->matrix[y][x])
+		{
+			x_rotate(fdf->matrix[y][x], rad);
+			x++;
+		}
+		y++;
+	}	
 }

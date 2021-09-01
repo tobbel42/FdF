@@ -1,25 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_create_point.c                                 :+:      :+:    :+:   */
+/*   fdf_project_orto.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/25 17:07:22 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/08/27 16:04:05 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/09/01 17:08:40 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/09/01 17:21:15 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-t_point	*fdf_create_point(float x, float y)
+t_point_2d	*fdf_project_orto(t_point_3d *p)
 {
-	t_point	*p;
+	t_point_2d	*new_p;
+	int			x;
+	int			y;
 
-	p = (t_point *)malloc(sizeof(t_point));
-	if (!p)
-		return (NULL);
-	p->x = x;
-	p->y = y;
-	return (p);
+	x = rint(p->x);
+	y = rint(p->y);
+	new_p = fdf_create_point_2d(x, y);
+	return (new_p);
 }

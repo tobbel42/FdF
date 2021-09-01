@@ -1,33 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_keyboard.c                                     :+:      :+:    :+:   */
+/*   fdf_to_2d.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/25 16:22:29 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/01 18:13:27 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/08/30 11:24:06 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/09/01 14:05:40 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	hook_keydown(int key, t_fdf *fdf)
+/*
+//projects a 3d point onto a 2d screen and returns the 2d point
+*/
+t_point_2d	*fdf_to_2d(t_point_3d *p, t_fdf *fdf)
 {
-	(void)fdf;
-	if (key == 53)
-	{
-		system("leaks fdf");
-		exit(EXIT_SUCCESS);
-	}
-	else if (key == 13)
-		fdf_rotate_x(fdf, -15);
-	else if (key == 0)
-		fdf_rotate_y(fdf, -15);
-	else if (key == 1)
-		fdf_rotate_x(fdf, 15);
-	else if (key == 2)
-		fdf_rotate_y(fdf, 15);
-	fdf_draw_screen(fdf);
-	return (0);
+	t_point_2d	*new_p;
+	float		new_x;
+	float		new_y;
+	float		z_fac;
+
+	z_fac = fdf->z / (p->z + fdf->z);
+	new_x = (fdf->x / 2) + ((p->x - (fdf->x / 2)) * z_fac);
+	new_y = (fdf->y / 2) + ((p->y - (fdf->y / 2)) * z_fac);
+	new_p = fdf_create_point_2d(new_x, new_y);
+	return (new_p);
 }

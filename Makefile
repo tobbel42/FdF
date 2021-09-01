@@ -7,7 +7,16 @@ SRC_LIST=test.c\
 	fdf_create_new_window.c \
 	fdf_keyboard.c \
 	fdf_bresenham.c \
-	fdf_create_point.c
+	fdf_create_point_3d.c \
+	fdf_create_point_2d.c \
+	fdf_to_2d.c \
+	fdf_file_to_matrix.c \
+	fdf_init_matrix.c \
+	fdf_isometric.c \
+	fdf_project_orto.c \
+	fdf_rotate_x.c \
+	fdf_rotate_y.c \
+	fdf_draw_screen.c
 SRC= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
 LIB_PATH= ./minilibx_macos

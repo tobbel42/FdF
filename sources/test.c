@@ -6,38 +6,29 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 14:32:18 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/08/27 15:55:21 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/01 18:04:58 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int		main(void)
+int		main(int argc, char **argv)
 {
-	t_fdf	*fdf;
-	t_point *p1;
-	t_point	*p2;
-	t_point *p3;
-	t_point	*p4;
-	int i = 1;
+	t_fdf		*fdf;
+	t_point_3d	***matrix;
 
-	fdf = fdf_create_new_window();
+	if (argc != 2)
+		return (1);
+	matrix = fdf_file_to_matrix(open(argv[1], O_RDONLY));	
+	fdf = fdf_create_new_window(1920, 1080, 1000);
 	if (fdf == 0)
 		return (0);
-	p1 = fdf_create_point(500 + (100 * cosf(i / 100)), 500 + (200 * sinf(i / 100)));
-	p3 = fdf_create_point(1000 + (100 * cosf(i / 100)), 500 + (200 * sinf(i / 100)));
-	while (i < 5000)
-	{
-		p2 = p1;
-		p4 = p3;
-		p1 = fdf_create_point(500 + (100 * cosf(i / 100)), 500 + (200 * sinf(i / 100)));
-		p3 = fdf_create_point(1000 + (100 * cosf(i / 100)), 500 + (200 * sinf(i / 100)));
-		i++;
-		fdf_bresenham(p2, p1, fdf);
-		fdf_bresenham(p4, p3, fdf);
-	}
+	fdf_init_matrix(fdf, matrix);
+	fdf_isometric(fdf);
+	fdf_draw_screen(fdf);
 	mlx_key_hook(fdf->win, hook_keydown, fdf);
 	mlx_loop (fdf->ptr);
+	system("leaks fdf");
 	exit(0);
 	return (0);
 }

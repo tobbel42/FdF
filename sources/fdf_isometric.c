@@ -1,33 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_keyboard.c                                     :+:      :+:    :+:   */
+/*   fdf_isometric.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/08/25 16:22:29 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/01 18:13:27 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/09/01 15:47:00 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/09/01 17:06:23 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-int	hook_keydown(int key, t_fdf *fdf)
+static void	iso_transform(t_point_3d *p)
 {
-	(void)fdf;
-	if (key == 53)
+	p->x = (1 / sqrt(6)) * (p->x * sqrt(3) + p->z * sqrt(3));
+	p->y = (1 / sqrt(6)) * (p->x + 2 * p->y + p->z);
+	p->z = (1 / sqrt(6)) * (p->x * sqrt(2) - p->y * sqrt(2) + p->z * sqrt(2));
+}
+
+void	fdf_isometric(t_fdf *fdf)
+{
+	int		x;
+	int		y;
+
+	y = 0;
+	while (fdf->matrix[y])
 	{
-		system("leaks fdf");
-		exit(EXIT_SUCCESS);
-	}
-	else if (key == 13)
-		fdf_rotate_x(fdf, -15);
-	else if (key == 0)
-		fdf_rotate_y(fdf, -15);
-	else if (key == 1)
-		fdf_rotate_x(fdf, 15);
-	else if (key == 2)
-		fdf_rotate_y(fdf, 15);
-	fdf_draw_screen(fdf);
-	return (0);
+		x = 0;
+		while (fdf->matrix[y][x])
+		{
+			iso_transform(fdf->matrix[y][x]);
+			x++;
+		}
+		y++;
+	}	
 }
