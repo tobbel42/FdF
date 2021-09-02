@@ -1,42 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_rotate_y.c                                     :+:      :+:    :+:   */
+/*   fdf_rotate_z.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/01 17:47:49 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 15:26:59 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/09/02 15:23:35 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/09/02 15:51:08 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	y_rotate(t_point_3d *p, float rad)
+static void	z_rotate(t_point_3d *p, float rad)
 {
 	float	cosa;
 	float	sina;
 
 	cosa = cos(rad);
 	sina = sin(rad);
-	p->x = p->x * cosa + p->z * sina;
-	p->z = (-1) * (p->x * sina) + p->z * cosa;
+	p->x = p->x * cosa - (p->y * sina);
+	p->z = p->x * sina + p->y * cosa;
 }
 
-void	fdf_rotate_y(t_fdf *fdf)
+void	fdf_rotate_z(t_fdf *fdf)
 {
 	float	rad;
 	int		x;
 	int		y;
 
-	rad = fdf->y_rot * M_PI / 180.0f;
+	rad = fdf->z_rot * M_PI / 180.0f;
 	y = 0;
 	while (fdf->m[y])
 	{
 		x = 0;
 		while (fdf->m[y][x])
 		{
-			y_rotate(fdf->m[y][x], rad);
+			z_rotate(fdf->m[y][x], rad);
 			x++;
 		}
 		y++;

@@ -1,42 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_rotate_y.c                                     :+:      :+:    :+:   */
+/*   fdf_trans.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/01 17:47:49 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 15:26:59 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/09/02 15:29:51 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/09/02 15:33:53 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	y_rotate(t_point_3d *p, float rad)
+/*
+//translates the matrix by the given values in x and y direction
+*/
+void	fdf_trans(t_fdf *fdf)
 {
-	float	cosa;
-	float	sina;
-
-	cosa = cos(rad);
-	sina = sin(rad);
-	p->x = p->x * cosa + p->z * sina;
-	p->z = (-1) * (p->x * sina) + p->z * cosa;
-}
-
-void	fdf_rotate_y(t_fdf *fdf)
-{
-	float	rad;
 	int		x;
 	int		y;
 
-	rad = fdf->y_rot * M_PI / 180.0f;
 	y = 0;
 	while (fdf->m[y])
 	{
 		x = 0;
 		while (fdf->m[y][x])
 		{
-			y_rotate(fdf->m[y][x], rad);
+			fdf->m[y][x]->x += (float)fdf->x_trans;
+			fdf->m[y][x]->z += (float)fdf->y_trans;
 			x++;
 		}
 		y++;

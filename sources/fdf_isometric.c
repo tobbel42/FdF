@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 15:47:00 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/01 17:06:23 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/02 15:49:03 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,12 @@ void	fdf_isometric(t_fdf *fdf)
 	int		y;
 
 	y = 0;
-	while (fdf->matrix[y])
+	while (fdf->m[y])
 	{
 		x = 0;
-		while (fdf->matrix[y][x])
+		while (fdf->m[y][x])
 		{
-			iso_transform(fdf->matrix[y][x]);
+			iso_transform(fdf->m[y][x]);
 			x++;
 		}
 		y++;

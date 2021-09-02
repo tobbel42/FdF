@@ -1,44 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_rotate_y.c                                     :+:      :+:    :+:   */
+/*   fdf_delete_matrix.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/01 17:47:49 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 15:26:59 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/09/02 15:17:55 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/09/02 15:21:01 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static void	y_rotate(t_point_3d *p, float rad)
+/*
+//frees a given matrix object and all its elements
+*/
+void	fdf_delete_matrix(t_point_3d ***m)
 {
-	float	cosa;
-	float	sina;
+	int	x;
+	int	y;
 
-	cosa = cos(rad);
-	sina = sin(rad);
-	p->x = p->x * cosa + p->z * sina;
-	p->z = (-1) * (p->x * sina) + p->z * cosa;
-}
-
-void	fdf_rotate_y(t_fdf *fdf)
-{
-	float	rad;
-	int		x;
-	int		y;
-
-	rad = fdf->y_rot * M_PI / 180.0f;
+	if (!m)
+		return ;
 	y = 0;
-	while (fdf->m[y])
+	while (m[y])
 	{
 		x = 0;
-		while (fdf->m[y][x])
+		while (m[y][x])
 		{
-			y_rotate(fdf->m[y][x], rad);
+			free(m[y][x]);
 			x++;
 		}
+		free(m[y]);
 		y++;
-	}	
+	}
+	free(m);
 }
