@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 12:00:05 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 14:04:28 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/03 14:44:28 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ static t_point_3d	**get_row(char **c_row, int y)
 	row[len] = NULL;
 	while (c_row[x])
 	{
-		row[x] = fdf_create_point_3d(x, y, ft_atoi(c_row[x]));
+		row[x] = fdf_create_point_3d(x, y, (-1) * ft_atoi(c_row[x]));
 		x++;
 	}
 	return (row);

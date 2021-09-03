@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 14:58:44 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 15:39:57 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/03 13:03:33 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct fdf
 	t_point_3d	***og_matrix;
 	t_point_3d	***m;
 	t_point_2d	*screen_center;
+	t_point_3d	*cam;
+	int			spread;
 	int			x_len;
 	int			y_len;
 	int			x_trans;
@@ -62,5 +64,9 @@ void		fdf_trans(t_fdf *fdf);
 void		fdf_draw_screen(t_fdf *fdf);
 t_point_3d	***fdf_create_new_matrix(t_fdf *fdf);
 void		fdf_delete_matrix(t_point_3d ***m);
+void		fdf_copy_matrix(t_fdf *fdf);
+void		fdf_mod_matrix(t_fdf *fdf);
+void		fdf_spread_matrix(t_fdf *fdf);
+t_point_2d	*fdf_project_cam(t_point_3d *p, t_fdf *fdf);
 
 #endif

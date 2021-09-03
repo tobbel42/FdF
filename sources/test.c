@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 14:32:18 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 15:48:09 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/03 11:50:44 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,8 @@ int		main(int argc, char **argv)
 	if (fdf == 0)
 		return (0);
 	fdf_init_matrix(fdf, matrix);
-
-	
-	//fdf_isometric(fdf);
-
-	//fdf_draw_screen(fdf);
+	fdf_mod_matrix(fdf);
+	fdf_draw_screen(fdf);
 	mlx_key_hook(fdf->win, hook_keydown, fdf);
 	mlx_loop (fdf->ptr);
 	exit(0);

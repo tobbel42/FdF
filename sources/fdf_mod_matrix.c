@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:55:16 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 15:58:46 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/03 13:44:01 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	fdf_mod_matrix(t_fdf *fdf)
 {
-	t_point_3d***	m;
-
 	if (fdf->m)
-		free(fdf->m);
+		fdf_delete_matrix(fdf->m);
 	fdf->m = fdf_create_new_matrix(fdf);
+	fdf_copy_matrix(fdf);
+	fdf_trans(fdf);	
+	fdf_spread_matrix(fdf);
+	fdf_rotate_x(fdf);
+	fdf_rotate_y(fdf);
+	fdf_rotate_z(fdf);
 	
-	fdf_trans(fdf);
-	fdf_rotate_x(fdf);
-	fdf_rotate_x(fdf);
-	fdf_rotate_x(fdf);
 }

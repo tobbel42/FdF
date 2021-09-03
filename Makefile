@@ -19,7 +19,11 @@ SRC_LIST=test.c\
 	fdf_trans.c \
 	fdf_draw_screen.c \
 	fdf_create_new_matrix.c \
-	fdf_delete_matrix.c
+	fdf_delete_matrix.c \
+	fdf_mod_matrix.c \
+	fdf_copy_matrix.c \
+	fdf_spread_matrix.c \
+	fdf_project_cam.c
 SRC= $(addprefix $(SRC_DIR), $(SRC_LIST))
 
 LIB_PATH= ./minilibx_macos

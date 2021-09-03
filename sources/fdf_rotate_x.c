@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 17:36:50 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 15:27:25 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/03 15:10:42 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ static void	x_rotate(t_point_3d *p, float rad)
 
 	cosa = cos(rad);
 	sina = sin(rad);
-	p->y = p->y * cosa - p->z * sina;
-	p->z = p->y * sina + p->z * cosa;
+	p->y = (p->y * cosa) - (p->z * sina);
+	p->z = (p->y * sina) + (p->z * cosa);
 }
 
 void	fdf_rotate_x(t_fdf *fdf)

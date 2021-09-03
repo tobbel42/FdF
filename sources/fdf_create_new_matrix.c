@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:07:44 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/02 15:49:13 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/03 10:54:43 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,10 @@ t_point_3d	***fdf_create_new_matrix(t_fdf *fdf)
 	t_point_3d	***m;
 
 	m = (t_point_3d ***)malloc((fdf->y_len + 1) * sizeof(t_point_3d **));
+	if (!m)
+		return (NULL);
+	m[fdf->y_len] = NULL;
+	
 	y = 0;
 	while (y <  fdf->y_len)
 	{
@@ -49,5 +53,5 @@ t_point_3d	***fdf_create_new_matrix(t_fdf *fdf)
 			return (NULL);
 		y++;
 	}
-	return (NULL);
+	return (m);
 }
