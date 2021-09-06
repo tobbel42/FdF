@@ -6,11 +6,12 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/30 11:58:45 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/08/30 12:00:31 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/06 16:40:08 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
 /*
 //creates a 3d point with the given coordinates
 */

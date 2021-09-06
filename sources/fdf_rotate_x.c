@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 17:36:50 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/03 15:10:42 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/06 16:45:50 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ static void	x_rotate(t_point_3d *p, float rad)
 	p->z = (p->y * sina) + (p->z * cosa);
 }
 
+/*
+//rotates the matrix around the x axis by the given angle
+*/
 void	fdf_rotate_x(t_fdf *fdf)
 {
 	float	rad;

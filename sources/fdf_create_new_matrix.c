@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:07:44 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/03 10:54:43 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/06 15:42:10 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,8 @@ t_point_3d	***fdf_create_new_matrix(t_fdf *fdf)
 	if (!m)
 		return (NULL);
 	m[fdf->y_len] = NULL;
-	
 	y = 0;
-	while (y <  fdf->y_len)
+	while (y < fdf->y_len)
 	{
 		m[y] = create_row(fdf);
 		if (!m[y])

@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:29:51 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/03 14:26:19 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/06 11:46:35 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ void	fdf_trans(t_fdf *fdf)
 		x = 0;
 		while (fdf->m[y][x])
 		{
-			fdf->m[y][x]->x += (float)fdf->x_trans;
-			fdf->m[y][x]->y += (float)fdf->y_trans;
+			fdf->m[y][x]->x += (float)fdf->x_trans * fdf->spread;
+			fdf->m[y][x]->y += (float)fdf->y_trans * fdf->spread;
 			x++;
 		}
 		y++;
