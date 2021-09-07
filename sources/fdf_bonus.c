@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:15:58 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/06 16:38:07 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/07 12:25:09 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(int argc, char **argv)
 		return (fdf_errors(4, argv[0]));
 	if (fdf_init_matrix(fdf, matrix))
 		return (fdf_errors(3, argv[0]));
+	if (fdf_check_lines(fdf) == -1)
+		return (fdf_errors(5, argv[0]));
 	fdf_mod_matrix(fdf);
 	fdf_draw_screen(fdf);
 	fdf_instructions_bonus(fdf);

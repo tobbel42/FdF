@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 14:58:44 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/06 16:37:36 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/09/07 12:21:13 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,5 +72,6 @@ void		fdf_mod_matrix(t_fdf *fdf);
 void		fdf_spread_matrix(t_fdf *fdf);
 int			fdf_errors(int i, char *argv);
 void		fdf_instructions_bonus(t_fdf *fdf);
+int			fdf_check_lines(t_fdf *fdf);
 
 #endif

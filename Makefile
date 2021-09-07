@@ -20,7 +20,8 @@ SRC_LIST=fdf_create_new_window.c \
 	fdf_mod_matrix.c \
 	fdf_copy_matrix.c \
 	fdf_spread_matrix.c \
-	fdf_errors.c
+	fdf_errors.c \
+	fdf_check_lines.c
 SRC= $(addprefix $(SRC_DIR), $(SRC_LIST))
 MAIN_KEY=./sources/fdf_keyboard.c \
 	./sources/fdf.c \
