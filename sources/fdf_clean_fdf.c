@@ -1,29 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_keyboard.c                                     :+:      :+:    :+:   */
+/*   fdf_clean_fdf.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 15:52:31 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/12/03 20:04:23 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/12/03 19:50:09 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/12/03 20:03:26 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/*
-//executes the keycommand
-*/
-int	hook_keydown(int key, t_fdf *fdf)
+void	fdf_clean_fdf(t_fdf *fdf)
 {
-	if (key == 53)
+	if (!fdf)
+		return ;
+	if (fdf->m)
 	{
-		fdf_clean_fdf(fdf);
-		fdf_clean_fdf(fdf);
-		fdf_clean_fdf(fdf);
-		system("leaks fdf");
-		exit(EXIT_SUCCESS);
+		fdf_delete_matrix(fdf->m);
+		fdf->m = NULL;
 	}
-	return (0);
+	if (fdf->og_matrix)
+	{
+		fdf_delete_matrix(fdf->og_matrix);
+		fdf->og_matrix = NULL;
+	}
+	if (fdf->img)
+	{
+		mlx_destroy_image(fdf->ptr, fdf->img);
+		fdf->img = NULL;
+	}
+	if (fdf->win)
+	{
+		mlx_destroy_window(fdf->ptr, fdf->win);
+		fdf->win = NULL;
+	}
 }

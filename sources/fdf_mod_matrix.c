@@ -6,24 +6,42 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:55:16 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/06 16:44:46 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/03 20:38:28 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 /*
-//applies all the changes to the matrix
+//applies all the changes to the matrix copy
 */
 void	fdf_mod_matrix(t_fdf *fdf)
 {
-	if (fdf->m)
-		fdf_delete_matrix(fdf->m);
-	fdf->m = fdf_create_new_matrix(fdf);
-	fdf_copy_matrix(fdf);
-	fdf_spread_matrix(fdf);
-	fdf_rotate_x(fdf);
-	fdf_rotate_y(fdf);
-	fdf_rotate_z(fdf);
-	fdf_trans(fdf);
+	int		x;
+	int		y;
+	float	rx;
+	float	ry;
+	float	rz;
+
+	rx = fdf->x_rot * M_PI / 180;
+	ry = fdf->y_rot * M_PI / 180;
+	rz = fdf->z_rot * M_PI / 180;
+	y = 0;
+	while (fdf->og_matrix[y])
+	{
+		x = 0;
+		while (fdf->og_matrix[y][x])
+		{
+			fdf->m[y][x]->x = fdf->og_matrix[y][x]->x * fdf->spread;
+			fdf->m[y][x]->y = fdf->og_matrix[y][x]->y * fdf->spread;
+			fdf->m[y][x]->z = fdf->og_matrix[y][x]->z * fdf->spread;
+			fdf_x_rotate(fdf->m[y][x], rx);
+			fdf_y_rotate(fdf->m[y][x], ry);
+			fdf_z_rotate(fdf->m[y][x], rz);
+			fdf->m[y][x]->x += (float)fdf->x_trans * fdf->spread;
+			fdf->m[y][x]->y += (float)fdf->y_trans * fdf->spread;
+			x++;
+		}
+		y++;
+	}
 }

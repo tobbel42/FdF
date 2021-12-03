@@ -6,39 +6,23 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 15:09:50 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/06 16:39:57 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/03 20:13:18 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
 /*
-//creates a new window, with the given size
+//creates a mlx-pointer and a new window, with the given size
+//returns 0 on success, 1 on error; 
 */
-t_fdf	*fdf_create_new_window(int x, int y)
+int		fdf_create_new_window(t_fdf *fdf)
 {
-	t_fdf	*fdf;
-
-	fdf = (t_fdf *)malloc(sizeof(t_fdf));
-	if (!fdf)
-		return (NULL);
 	fdf->ptr = mlx_init();
 	if (!fdf->ptr)
-	{
-		free(fdf);
-		return (NULL);
-	}
-	fdf->win = mlx_new_window(fdf->ptr, x, y, "fdf");
-	fdf->c = fdf_create_point_2d(x / 2, y / 2);
-	if (!fdf->win || !fdf->c)
-	{
-		if (fdf->c)
-			free(fdf->c);
-		if (fdf->win)
-			free(fdf->win);
-		free(fdf->ptr);
-		free(fdf);
-		return (NULL);
-	}
-	return (fdf);
+		return (1);
+	fdf->win = mlx_new_window(fdf->ptr, fdf->width, fdf->height, "fdf");
+	if (!fdf->win)
+		return (1);
+	return (0);
 }

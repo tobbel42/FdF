@@ -1,29 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fdf_keyboard.c                                     :+:      :+:    :+:   */
+/*   fdf_copy_point.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/06 15:52:31 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/12/03 20:04:23 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/12/03 10:45:55 by tgrossma          #+#    #+#             */
+/*   Updated: 2021/12/03 10:48:22 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-/*
-//executes the keycommand
-*/
-int	hook_keydown(int key, t_fdf *fdf)
+void	fdf_copy_point(t_fdf *fdf, int x, int y)
 {
-	if (key == 53)
-	{
-		fdf_clean_fdf(fdf);
-		fdf_clean_fdf(fdf);
-		fdf_clean_fdf(fdf);
-		system("leaks fdf");
-		exit(EXIT_SUCCESS);
-	}
-	return (0);
+	fdf->m[y][x]->x = fdf->og_matrix[y][x]->x;
+	fdf->m[y][x]->y = fdf->og_matrix[y][x]->y;
+	fdf->m[y][x]->z = fdf->og_matrix[y][x]->z;
 }

@@ -3,25 +3,29 @@ C_FLAGS=-Wall -Werror -Wextra
 NAME=fdf
 BONUS_NAME=fdf_bonus.c
 SRC_DIR=./sources/
-SRC_LIST=fdf_create_new_window.c \
-	fdf_bresenham.c \
-	fdf_create_point_3d.c \
+SRC_LIST=fdf_create_point_3d.c \
 	fdf_create_point_2d.c \
-	fdf_file_to_matrix.c \
-	fdf_init_matrix.c \
-	fdf_project_orto.c \
-	fdf_rotate_x.c \
-	fdf_rotate_y.c \
-	fdf_rotate_z.c \
-	fdf_trans.c \
-	fdf_draw_screen.c \
 	fdf_create_new_matrix.c \
 	fdf_delete_matrix.c \
-	fdf_mod_matrix.c \
-	fdf_copy_matrix.c \
-	fdf_spread_matrix.c \
 	fdf_errors.c \
-	fdf_check_lines.c
+	\
+	fdf_mod_matrix.c \
+	fdf_rotate_point.c \
+	\
+	fdf_draw_screen.c \
+	fdf_project_orto.c \
+	fdf_bresenham.c \
+	\
+	fdf_init_fdf.c\
+	fdf_file_to_matrix.c \
+	fdf_init_matrix.c \
+	fdf_read_file.c\
+	fdf_check_lines.c \
+	fdf_create_new_window.c \
+	fdf_clean_fdf.c\
+	\
+	\
+
 SRC= $(addprefix $(SRC_DIR), $(SRC_LIST))
 MAIN_KEY=./sources/fdf_keyboard.c \
 	./sources/fdf.c \
