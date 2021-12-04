@@ -12,24 +12,24 @@
 
 #include "libft.h"
 
+/*
+//duplicates the string s1, returns a pointer to the copy
+*/
 char	*ft_strdup(const char *s1)
 {
 	char		*ptr;
 	size_t		len;
 
-	len = 0;
-	while (s1[len] != '\0')
-		len++;
+	len = ft_strlen(s1);
 	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (ptr != 0)
+	if (!ptr)
+		return (NULL);
+	len = 0;
+	while (s1[len])
 	{
-		len = 0;
-		while (s1[len] != 0)
-		{
-			ptr[len] = s1[len];
-			len++;
-		}
 		ptr[len] = s1[len];
+		len++;
 	}
+	ptr[len] = s1[len];
 	return (ptr);
 }

@@ -76,21 +76,27 @@ static int	fill_tab(char **ptr_tab, char *ptr, char c, int n_subs)
 	return (1);
 }
 
+/*
+//splits the string using character c, returns a NULL-terminated error 
+//of substrings
+*/
 char	**ft_split(char const *s, char c)
 {
 	int		n_subs;
 	char	**ptr_tab;
 	char	*ptr;
 
+	if (!s)
+		return (NULL);
 	n_subs = find_subs(s, c);
 	ptr_tab = (char **)malloc((n_subs + 1) * sizeof(char *));
-	if (ptr_tab == 0)
-		return (ptr_tab);
+	if (!ptr_tab)
+		return (NULL);
 	ptr = (char *)s;
-	if (fill_tab(ptr_tab, ptr, c, n_subs) == 0)
+	if (!fill_tab(ptr_tab, ptr, c, n_subs))
 	{
 		free(ptr_tab);
-		return (0);
+		return (NULL);
 	}
 	return (ptr_tab);
 }

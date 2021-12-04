@@ -12,8 +12,13 @@
 
 #include "libft.h"
 
+/*
+//adds the given element to the front of the list
+*/
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {
+	if (!lst || !new)
+		return ;
 	new->next = *lst;
 	*lst = new;
 }

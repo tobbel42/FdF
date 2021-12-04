@@ -12,6 +12,9 @@
 
 #include "libft.h"
 
+/*
+//returns a pointer to the first occurence of needle in haystack
+*/
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
 	size_t	i;
@@ -19,22 +22,22 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 
 	i = 0;
 	j = 0;
-	if (ft_strlen(needle) == 0)
+	if (!ft_strlen(needle))
 		return ((char *)haystack);
-	while (haystack[i] != '\0' && i < len)
+	while (haystack[i] && i < len)
 	{
 		if (haystack[i] == needle[j])
 		{
 			j++;
-			if (needle[j] == '\0')
+			if (!needle[j])
 				return ((char *)&haystack[i - j + 1]);
 		}
-		else if (j != 0)
+		else if (j)
 		{
 			i = i - j;
 			j = 0;
 		}
 		i++;
 	}
-	return (0);
+	return (NULL);
 }

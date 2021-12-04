@@ -10,16 +10,13 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <unistd.h>
-#include <stddef.h>
 #include "libft.h"
 
+/*
+//writes the string s to the file-descriptor fd
+*/
 void	ft_putstr_fd(char *s, int fd)
 {
-	size_t		len;
-
-	len = 0;
-	while (s[len] != 0)
-		len++;
-	write(fd, s, len);
+	if (s)
+		write(fd, s, ft_strlen(s));
 }

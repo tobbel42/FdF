@@ -12,6 +12,10 @@
 
 #include "libft.h"
 
+/*
+//convertes a string into an integer
+//does not check for over/underflow
+*/
 int	ft_atoi(const char *nptr)
 {
 	int		i;
@@ -21,7 +25,7 @@ int	ft_atoi(const char *nptr)
 	n = 0;
 	i = 0;
 	sign_flag = 1;
-	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+	while (ft_isspace(nptr[i]))
 		i++;
 	if (nptr[i] == '-')
 	{
@@ -30,7 +34,7 @@ int	ft_atoi(const char *nptr)
 	}
 	else if (nptr[i] == '+')
 		i++;
-	while (nptr[i] >= '0' && nptr[i] <= '9')
+	while (ft_isdigit(nptr[i]))
 	{
 		n = (n * 10) + (nptr[i] - 48);
 		i++;

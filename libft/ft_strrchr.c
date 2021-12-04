@@ -12,18 +12,19 @@
 
 #include "libft.h"
 
+/*
+//returns a pointer to the first occurence of c in string s
+*/
 char	*ft_strrchr(const char *s, int c)
 {
 	int		len;
 
-	len = 0;
-	while (s[len] != 0)
-		len++;
+	len = ft_strlen(s);
 	while (len >= 0)
 	{
 		if (s[len] == c)
 			return ((char *)(s + len));
 		len--;
 	}
-	return (0);
+	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/02 15:07:44 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/06 15:42:10 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/04 17:09:30 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static t_point_3d	**create_row(t_fdf *fdf)
 }
 
 /*
-//creates a new matrix with the size of the og_matrix;
+//creates a new matrix with the size of the original matrix;
 */
 t_point_3d	***fdf_create_new_matrix(t_fdf *fdf)
 {

@@ -12,10 +12,15 @@
 
 #include "libft.h"
 
+/*
+//adds the given element to the end of the list
+*/
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
 	t_list	*node;
 
+	if (!lst || !new)
+		return ;
 	node = *lst;
 	if (node)
 	{

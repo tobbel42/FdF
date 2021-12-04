@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 19:28:02 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/12/03 20:42:45 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/04 21:10:10 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ t_fdf	*fdf_init_fdf(int argc, char **argv)
 		fdf_errors(fdf, ERR_MEM, argv[0]);
 	fdf->width = 1920;
 	fdf->height = 1080;
+	fdf->spread = 1;
 	fdf_read_file(fdf, argc, argv);
 	if (fdf_init_m(fdf))
 		fdf_errors(fdf, ERR_MEM, argv[0]);

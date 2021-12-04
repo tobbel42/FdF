@@ -12,11 +12,17 @@
 
 #include "libft.h"
 
+/*
+//Deletes and frees the given element and every successor of that element,
+//using the function ’del’ and free, the pointer to the list is set to NULL.
+*/
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {
 	t_list	*node;
 	t_list	*nxt_node;
 
+	if (!lst || !del)
+		return ;
 	node = *lst;
 	while (node)
 	{

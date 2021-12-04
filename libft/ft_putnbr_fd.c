@@ -12,6 +12,9 @@
 
 #include "libft.h"
 
+/*
+//writes the int n to the file-decriptor fd
+*/
 void	ft_putnbr_fd(int n, int fd)
 {
 	char	c;

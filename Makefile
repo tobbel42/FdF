@@ -11,6 +11,7 @@ SRC_LIST=fdf_create_point_3d.c \
 	\
 	fdf_mod_matrix.c \
 	fdf_rotate_point.c \
+	fdf_init_spread.c\
 	\
 	fdf_draw_screen.c \
 	fdf_project_orto.c \

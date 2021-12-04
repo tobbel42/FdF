@@ -53,6 +53,10 @@ static void	itoa_fill(char *ptr, int n, int len)
 	}
 }
 
+/*
+//transforms the integer to a string
+//returns NULL on error
+*/
 char	*ft_itoa(int n)
 {	
 	char	*ptr;

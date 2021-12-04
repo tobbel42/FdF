@@ -12,19 +12,22 @@
 
 #include "libft.h"
 
+/*
+//applies the function f to each char of string s, returns the result
+*/
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {	
 	char			*ptr;
 	unsigned int	len;
 	unsigned int	i;
 
-	len = 0;
-	while (s[len] != 0)
-		len++;
+	if (!s)
+		return (NULL);
+	len = ft_strlen(s);
 	ptr = (char *)malloc((len + 1) * sizeof(char));
-	if (ptr == 0)
-		return (0);
-	ptr[len] = 0;
+	if (!ptr)
+		return (NULL);
+	ptr[len] = '\0';
 	i = 0;
 	while (i < len)
 	{

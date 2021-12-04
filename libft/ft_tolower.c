@@ -13,10 +13,9 @@
 #include "libft.h"
 
 /*
-**takes a char as input, returns the corresponding lowercase letter or
-**the input if no uppercase letter was given. 
+//takes a char as input, returns the corresponding lowercase letter or
+//the input if no uppercase letter was given. 
 */
-
 int	ft_tolower(int c)
 {
 	if (c >= 'A' && c <= 'Z')

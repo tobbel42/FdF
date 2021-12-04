@@ -11,8 +11,10 @@
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdio.h>
 
+/*
+//returns the number of elements in lst
+*/
 int	ft_lstsize(t_list *lst)
 {
 	int		i;

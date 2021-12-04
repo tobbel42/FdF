@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_isprint.c                                       :+:      :+:    :+:   */
+/*   ft_isspace.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/06/28 13:57:31 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/06/28 13:57:31 by tgrossma         ###   ########.fr       */
+/*   Created: 2021/08/31 15:35:43 by marvin            #+#    #+#             */
+/*   Updated: 2021/08/31 15:35:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
 /*
-//checks if c is a printable character
+//checks if c is a whitespace-character
 */
-int	ft_isprint(int c)
+int	ft_isspace(int c)
 {
-	if (c >= 32 && c < 127)
+	if ((c >= 9 && c <= 13) || c == 32)
 		return (1);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 17:08:40 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/06 16:45:07 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/04 19:18:02 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ t_point_2d	*fdf_project_orto(t_point_3d *p)
 	int			y;
 
 	x = rint(p->x);
-	y = rint(p->y);
+	y = rint(p->z);
 	new_p = fdf_create_point_2d(x, y);
 	return (new_p);
 }

@@ -6,13 +6,13 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:41:35 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/12/03 19:45:15 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/04 21:09:14 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static inline int	fdf_abs(int nbr)
+static int	fdf_abs(int nbr)
 {
 	if (nbr < 0)
 		return (-1 * nbr);
@@ -24,7 +24,7 @@ static void	my_pixel_put(t_fdf *fdf, int x, int y, unsigned int color)
 	void	*dst;
 	
 	
-	if (x < 0 || x >= 1920 || y < 0 || y >= 1080)
+	if (x < 0 || x >= fdf->width || y < 0 || y >= fdf->height)
 		return ;
 	dst = fdf->img_addr + ((y * (fdf->img_ll))+ (x * (fdf->img_bpp / 8)));
 	*(unsigned int *)dst = color;

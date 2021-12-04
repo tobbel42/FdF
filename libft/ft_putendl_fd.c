@@ -12,13 +12,13 @@
 
 #include "libft.h"
 
+/*
+//writes the string s followed by a newline to file-descriptor fd
+*/
 void	ft_putendl_fd(char *s, int fd)
 {
-	size_t		len;
-
-	len = 0;
-	while (s[len] != 0)
-		len++;
-	write(fd, s, len);
-	write(fd, "\n", 1);
+	if (!s)
+		return ;
+	ft_putstr_fd(s, fd);
+	ft_putchar_fd('\n', fd);
 }

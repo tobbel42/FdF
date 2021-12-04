@@ -12,10 +12,15 @@
 
 #include "libft.h"
 
+/*
+//applies the the function f to the content of all elements of lst
+*/
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
 	t_list	*node;
 
+	if (!lst && !f)
+		return ;
 	node = lst;
 	while (node)
 	{

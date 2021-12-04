@@ -12,6 +12,9 @@
 
 #include "libft.h"
 
+/*
+//creates a new list element with content content
+*/
 t_list	*ft_lstnew(void	*content)
 {
 	t_list	*new_e;

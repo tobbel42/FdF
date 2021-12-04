@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/06 16:08:51 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/12/03 20:42:22 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/04 18:03:04 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,6 @@ int	fdf_errors(t_fdf *fdf, int i, char *argv)
 	else
 		ft_putendl_fd(": error", 2);
 	fdf_clean_fdf(fdf);
+	system("leaks fdf");
 	exit(EXIT_FAILURE);
 }

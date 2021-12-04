@@ -6,20 +6,20 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/01 12:00:05 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/09/06 16:41:47 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/04 21:31:51 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
 
-static char	***unwind_c_matrix(char ***char_matrix)
+void	fdf_delete_c_matrix(char ***char_matrix)
 {
 	int		x;
 	int		y;
 
 	y = 0;
 	if (!char_matrix)
-		return (NULL);
+		return ;
 	while (char_matrix[y])
 	{
 		x = 0;
@@ -32,58 +32,52 @@ static char	***unwind_c_matrix(char ***char_matrix)
 		y++;
 	}
 	free(char_matrix);
-	return (NULL);
 }
 
-static char	***append_to_matrix(char ***matrix, char **tab)
+static int	append_to_matrix(t_fdf *fdf, char **tab)
 {
-	int		len;
 	int		i;
 	char	***new_matrix;
 
-	len = 0;
-	if (!matrix)
-		return (NULL);
-	while (matrix[len])
-		len++;
-	new_matrix = (char ***)malloc((len + 2) * sizeof(char **));
+	new_matrix = (char ***)ft_calloc((fdf->y_len + 2), sizeof(char **));
 	if (!new_matrix)
-		return (unwind_c_matrix(matrix));
+		return (1);
 	i = 0;
-	while (i < len)
+	while (i < fdf->y_len)
 	{
-		new_matrix[i] = matrix[i];
+		new_matrix[i] = fdf->c_m[i];
 		i++;
 	}
+	fdf->y_len += 1;
 	new_matrix[i] = tab;
-	new_matrix[i + 1] = NULL;
-	free(matrix);
-	return (new_matrix);
+	free(fdf->c_m);
+	fdf->c_m = new_matrix;
+	return (0);
 }
 
-static char	***char_matrix(int fd)
+static int	char_matrix(t_fdf *fdf, int fd)
 {
 	char	*line;
 	char	**tab;
-	char	***matrix;
 
-	matrix = (char ***)malloc(sizeof(char **));
-	if (!matrix)
-		return (NULL);
-	matrix[0] = NULL;
+	fdf->c_m = (char ***)ft_calloc(sizeof(char **), 1);
+	if (!fdf->c_m)
+		return (1);
 	line = get_next_line(fd);
-	while (line && matrix)
+	while (line && fdf->c_m)
 	{
 		tab = ft_split(line, ' ');
 		if (!tab)
-			return (unwind_c_matrix(matrix));
-		matrix = append_to_matrix(matrix, tab);
-		if (!matrix)
+			return (1);	
+		if (append_to_matrix(fdf, tab))
+		{
 			free(tab);
+			return (1);
+		}
 		free(line);
 		line = get_next_line(fd);
 	}
-	return (matrix);
+	return (0);
 }
 
 static t_point_3d	**get_row(char **c_row, int y)
@@ -98,13 +92,12 @@ static t_point_3d	**get_row(char **c_row, int y)
 		return (NULL);
 	while (c_row[len])
 		len++;
-	row = (t_point_3d **)malloc((len + 1) * sizeof(t_point_3d *));
+	row = (t_point_3d **)ft_calloc((len + 1), sizeof(t_point_3d *));
 	if (!row)
 		return (NULL);
-	row[len] = NULL;
 	while (c_row[x] && ft_strncmp(c_row[x], "\n", 1))
 	{
-		row[x] = fdf_create_point_3d(x, y, (-1) * ft_atoi(c_row[x]));
+		row[x] = fdf_create_point_3d(x,  y, -1 * ft_atoi(c_row[x])); // todo read colour
 		x++;
 	}
 	return (row);
@@ -113,31 +106,25 @@ static t_point_3d	**get_row(char **c_row, int y)
 /*
 //transforms the given file into a matrix of 3d points
 */
-t_point_3d	***fdf_file_to_matrix(int fd)
+int	fdf_file_to_matrix(t_fdf *fdf, int fd)
 {
-	char		***c_matrix;
-	t_point_3d	***matrix;
-	int			len;
 	int			y;
 
-	c_matrix = char_matrix(fd);
-	if (!c_matrix)
-		return (NULL);
-	len = 0;
-	while (c_matrix[len])
-		len++;
-	matrix = (t_point_3d ***)malloc((len + 1) * sizeof(t_point_3d **));
-	if (!matrix)
-		return (NULL);
-	matrix[len] = NULL;
+	if (char_matrix(fdf, fd))
+		return (1);
+
+	fdf->og_m = (t_point_3d ***)ft_calloc((fdf->y_len + 1) , sizeof(t_point_3d **));
+	if (!fdf->og_m)
+		return (1);
 	y = 0;
-	while (c_matrix[y])
+	while (y < fdf->y_len)
 	{	
-		matrix[y] = get_row(c_matrix[y], y);
-		if (!matrix[y])
-			break ;
+		fdf->og_m[y] = get_row(fdf->c_m[y], y);
+		if (!fdf->og_m[y])
+			return (1);
 		y++;
-	}	
-	unwind_c_matrix(c_matrix);
-	return (matrix);
+	}
+	while (fdf->og_m[0][fdf->x_len])
+		fdf->x_len++;
+	return (0);
 }

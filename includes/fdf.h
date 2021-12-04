@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 14:58:44 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/12/03 21:20:50 by tgrossma         ###   ########.fr       */
+/*   Updated: 2021/12/04 20:19:20 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@
 /*
 //FdF specific errors
 */
-# define ERR_ARG 1
-# define ERR_OPEN 2
-# define ERR_PARSE 3
-# define ERR_WIN 4
-# define ERR_LINE 5
-# define ERR_MEM 6
+# define ERR_ARG	1
+# define ERR_OPEN	2
+# define ERR_PARSE	3
+# define ERR_WIN	4
+# define ERR_LINE	5
+# define ERR_MEM	6
 
 /*
 //library includes
@@ -69,12 +69,13 @@ typedef struct fdf
 	int			img_bpp;
 	int			img_end;
 
-	t_point_3d	***og_matrix;
+	char		***c_m;
+	t_point_3d	***og_m;
 	t_point_3d	***m;
 	int			x_len;
 	int			y_len;
 
-	int			spread;
+	float		spread;
 	int			x_trans;
 	int			y_trans;
 	float		x_rot;
@@ -94,6 +95,7 @@ typedef struct b
 t_point_2d	*fdf_create_point_2d(int x, int y);
 t_point_3d	*fdf_create_point_3d(float x, float y, float z);
 t_point_3d	***fdf_create_new_matrix(t_fdf *fdf);
+void		fdf_delete_c_matrix(char ***char_matrix);
 void		fdf_delete_matrix(t_point_3d ***m);
 
 
@@ -101,9 +103,7 @@ void		fdf_delete_matrix(t_point_3d ***m);
 void		fdf_mod_matrix(t_fdf *fdf);
 
 
-
-void		fdf_spread_point(t_fdf *fdf, int x, int y);
-void		fdf_trans_point(t_fdf *fdf, int x, int y);
+void		fdf_init_spread(t_fdf *fdf);
 void		fdf_x_rotate(t_point_3d *p, float rad);
 void		fdf_y_rotate(t_point_3d *p, float rad);
 void		fdf_z_rotate(t_point_3d *p, float rad);
@@ -124,8 +124,8 @@ int			hook_keydown(int key, t_fdf *fdf);
 
 t_fdf		*fdf_init_fdf(int argc, char **argv);
 int			fdf_read_file(t_fdf *fdf, int argc, char **argv);
-t_point_3d	***fdf_file_to_matrix(int fd);
-int			fdf_init_matrix(t_fdf *fdf, t_point_3d ***matrix);
+int			fdf_file_to_matrix(t_fdf *fdf, int fd);
+int			fdf_init_matrix(t_fdf *fdf);
 int			fdf_check_lines(t_fdf *fdf);
 int			fdf_init_m(t_fdf *fdf);
 int			fdf_create_new_window(t_fdf *fdf);
