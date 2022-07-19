@@ -2,9 +2,9 @@
 
 ## Task
 
-FdF(`fil de fer` which stands for wireframe in French) is a 3D wireframe Viewer (macOS only).
-It is the first graphics project in the 42 curriculum and is written purely in C.
-We had to use a simple graphics library (for each pixel an RGBA value is set).
+FdF(`fil de fer` which stands for wireframe in French) is a 3D wireframe Viewer (macOS only).<br>
+It is the first graphics project in the 42 curriculum and is written purely in C.<br>
+We had to use a simple graphics library (for each pixel an RGBA value is set).<br>
 The program takes as input a map, which is then parsed, rendered and displayed.
 
 ![pyramide.fdf map](/images/pyramide.png)
