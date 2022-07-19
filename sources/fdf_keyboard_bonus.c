@@ -6,7 +6,7 @@
 /*   By: tgrossma <tgrossma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/25 16:22:29 by tgrossma          #+#    #+#             */
-/*   Updated: 2021/12/03 19:17:45 by tgrossma         ###   ########.fr       */
+/*   Updated: 2022/07/19 11:38:23 by tgrossma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,8 @@ static void	rota(int key, t_fdf *fdf)
 */
 int	hook_keydown(int key, t_fdf *fdf)
 {
-	if (key == 53)
-	{
-		system("leaks fdf_bonus");
+	if (key == 53){
+		fdf_clean_fdf(fdf);
 		exit(EXIT_SUCCESS);
 	}
 	else if ((key >= 0 && key <= 2) || (key >= 12 && key <= 14))
